@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({ qData: Object, currentQuestionIndex: Number });
+const props = defineProps({ qData: Object });
 const emit = defineEmits(["qIndex"]);
 
 const onClickQuestion = (questionId) => {
@@ -11,11 +11,11 @@ console.log(props.qData);
 
 <template>
   <div class="question-container">
-    <p class="question">{{ props.qData[currentQuestionIndex].text }}</p>
+    <p class="question">{{ props.qData.text }}</p>
     <ul class="options-wrapper">
       <li
         class="option-panel"
-        v-for="option in props.qData[currentQuestionIndex].options"
+        v-for="option in props.qData.options"
         :key="option.id"
         @click="onClickQuestion(option.isCorrect)"
       >
@@ -55,6 +55,7 @@ console.log(props.qData);
   height: 60px;
   background-color: #ebdef0;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .option-label-head {
