@@ -1,22 +1,26 @@
+<script setup>
+const props = defineProps({ qData: Object, currentQuestionIndex: Number });
+const emit = defineEmits(["qIndex"]);
+
+const onClickQuestion = (questionId) => {
+  emit("qIndex", questionId);
+};
+
+console.log(props.qData);
+</script>
+
 <template>
   <div class="question-container">
-    <p class="question">What is the chemical of the salt</p>
+    <p class="question">{{ props.qData[currentQuestionIndex].text }}</p>
     <ul class="options-wrapper">
-      <li class="option-panel">
-        <p class="option-label-head">A</p>
-        <p class="option-label-body">Ncal</p>
-      </li>
-      <li class="option-panel">
-        <p class="option-label-head">B</p>
-        <p class="option-label-body">Ncal</p>
-      </li>
-      <li class="option-panel">
-        <p class="option-label-head">C</p>
-        <p class="option-label-body">Ncal</p>
-      </li>
-      <li class="option-panel">
-        <p class="option-label-head">D</p>
-        <p class="option-label-body">Ncal</p>
+      <li
+        class="option-panel"
+        v-for="option in props.qData[currentQuestionIndex].options"
+        :key="option.id"
+        @click="onClickQuestion(option.isCorrect)"
+      >
+        <p class="option-label-head">{{ option.label }}</p>
+        <p class="option-label-body">{{ option.text }}</p>
       </li>
     </ul>
   </div>

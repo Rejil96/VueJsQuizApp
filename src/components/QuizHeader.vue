@@ -1,8 +1,12 @@
+<script setup>
+const props = defineProps({ questionStatus: String, barPercentage: String });
+</script>
+
 <template>
   <header>
-    <h1 class="header-question">Question 1/3</h1>
+    <h1 class="header-question">Questions {{ props.questionStatus }}</h1>
     <div class="bar">
-      <div class="completion"></div>
+      <div class="completion" :style="{ width: barPercentage }"></div>
     </div>
   </header>
 </template>
@@ -24,5 +28,11 @@ header {
 .header-question {
   font-size: 38px;
   font-weight: bolder;
+}
+
+.completion {
+  height: 100%;
+  width: 0%;
+  background-color: #ed9e36;
 }
 </style>
