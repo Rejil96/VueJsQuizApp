@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import QuizezView from '../views/QuizezView.vue'
 import QuizView from '../views/QuizView.vue'
+import PathNotFound from '../views/PathNotFoundView.vue'
 
 
 const router = createRouter ({
@@ -15,7 +16,11 @@ const router = createRouter ({
             path: "/quiz/:id",
             name: "quiz",
             component: QuizView
-        }
+        },
+        { 
+            path: '/:pathMatch(.*)*', 
+            component: PathNotFound 
+        },
        
     ]
 })
